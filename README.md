@@ -2,7 +2,22 @@
 
 Reproducible submission repository for the Mandrake Bio Retroviral Wall Challenge. The project predicts reverse transcriptase (RT) activity from sequence, protein-family, embedding, and structure-derived features under leave-one-family-out (LOFO) validation.
 
-The repository is packaged so a reviewer can reproduce the submitted CSV and verify the reported score with two commands after environment setup.
+The repository is packaged so that a reviewer can reproduce the submitted CSV and verify the reported score with two commands after environment setup.
+
+## Contents
+
+- [Submission Snapshot](#submission-snapshot)
+- [Quick Reproduction](#quick-reproduction)
+- [Reproducibility Contract](#reproducibility-contract)
+- [Validation Commands](#validation-commands)
+- [Validation Strategy](#validation-strategy)
+- [Method Summary](#method-summary)
+- [Repository Layout](#repository-layout)
+- [Main Pipeline Lineage](#main-pipeline-lineage)
+- [Requirements](#requirements)
+- [Fresh-Clone Checklist](#fresh-clone-checklist)
+- [Contributors](#contributors)
+- [Notes](#notes)
 
 <video src="brag-output/brag.mp4" controls poster="brag-output/brag.jpg" width="100%"></video>
 
@@ -96,7 +111,6 @@ B9CFADF6BF3AFED5BEA1E5D848D5E8F4EF510E322DB61373316A3D9EDC6CA84E
 
 SHA256 results/calibrated_predictions_selected_features.csv
 B9CFADF6BF3AFED5BEA1E5D848D5E8F4EF510E322DB61373316A3D9EDC6CA84E
-
 ```
 
 ## Validation Commands
@@ -255,6 +269,13 @@ Python 3.14.2
 4. Run `python evaluation\evaluate.py --predictions submission.csv`.
 5. Confirm the evaluator reports `CLS: 0.9754`.
 6. Submit `submission.csv`, `WRITEUP.md`, and this repository as the runnable code package.
+
+## Contributors
+
+- **Tanish N.** ([@TanishDevs11](https://github.com/TanishDevs11)): repository owner. Project setup, data loading and feature-engineering pipeline, family-conditioned LOFO search, the residual-ranking experiments, the evaluator, and the final submission materialization path.
+- **Hemalakshmi P.** ([@Hemapushparaj](https://github.com/Hemapushparaj)): XGBoost modelling line developed on `H-Branch`, specifically `src/train_xgboost_lofo.py` (LOFO-validated XGBoost baseline, FoldSeek features removed to confirm zero leakage), `src/improve_xgboost.py` (strict-threshold and stability-feature variant), and `src/confusion matrix.py` (confusion-matrix analysis). Also contributed SHAP and UMAP analysis outputs and the model-comparison script and plots on that branch.
+
+These XGBoost scripts were brought onto `main` in commit `3ca8467` ("Import XGBoost scripts from H-Branch"), which was authored by the repository owner rather than by the original author. GitHub's Contributors list is derived from commit authorship on the default branch, so it does not currently reflect the second contribution.
 
 ## Notes
 
